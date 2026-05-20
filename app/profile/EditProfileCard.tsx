@@ -193,6 +193,7 @@ export default function EditProfileCard({
                         checking ||
                         !isDirty ||
                         username.length < 3 ||
+                        !USERNAME_REGEX.test(username) ||
                         (!available && username !== initialUsername)
                     }
                 >
