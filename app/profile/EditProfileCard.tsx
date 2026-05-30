@@ -86,9 +86,9 @@ export default function EditProfileCard({
     }
 
     async function saveChanges() {
-        setLoading(true);
         const err = validate();
         if (err) { alert(err); return; }
+        setLoading(true);
         const csrfToken = await getCsrfToken();
 
         const res = await fetch("/api/profile/update", {
