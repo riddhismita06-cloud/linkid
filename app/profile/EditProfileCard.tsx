@@ -76,11 +76,11 @@ export default function EditProfileCard({
         return "Name cannot be empty.";
       if (name.trim().length < 2)
         return "Name must be ≥ 2 chars.";
-      if (username.length < 3)
+      if (username.trim().length < 3)
         return "Username must be ≥ 3 chars.";
-      if (!USERNAME_REGEX.test(username))
+      if (!USERNAME_REGEX.test(username.trim()))
         return "Letters, numbers, _ - only.";
-      if (bio.length > 160)
+      if (bio.trim().length > 160)
         return "Bio max 160 characters.";
       return null;
     }
