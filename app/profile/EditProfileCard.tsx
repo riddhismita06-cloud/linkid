@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { getCsrfToken } from "@/lib/csrfClient";
 import { Check, X } from "lucide-react";
 
-const USERNAME_REGEX = /^[a-zA-Z0-9_-]+$/;
+const USERNAME_REGEX = /^[a-zA-Z0-9-]+$/;
 
 export default function EditProfileCard({
     initialName,
