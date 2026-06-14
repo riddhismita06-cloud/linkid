@@ -41,7 +41,12 @@ export async function POST(req: Request) {
     } catch {
       return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
-    const daysBackInput = typeof body.daysBack === "number" ? body.daysBack : 1;
+
+    const rawDaysBack = body.daysBack;
+    const daysBackInput =
+        typeof rawDaysBack === "number" && Number.isFinite(rawDaysBack)
+            ? rawDaysBack
+            : 1;
     const daysBack = Math.max(1, Math.min(30, Math.floor(daysBackInput)));
 
     let dateBase = utcDayShift(new Date(), -1);
