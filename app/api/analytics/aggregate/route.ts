@@ -13,6 +13,7 @@ function toUtcDateFromInput(raw: string): Date | null {
     if (month < 1 || month > 12 || day < 1 || day > 31) return null;
 
     const parsed = new Date(Date.UTC(year, month - 1, day));
+    if (parsed.getUTCMonth() !== month - 1) return null;
     return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
