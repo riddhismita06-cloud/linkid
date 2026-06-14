@@ -35,8 +35,12 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = await req.json().catch(() => ({} as Record<string, unknown>));
-
+    let body: Record<string, unknown>;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
     const daysBackInput = typeof body.daysBack === "number" ? body.daysBack : 1;
     const daysBack = Math.max(1, Math.min(30, Math.floor(daysBackInput)));
 
